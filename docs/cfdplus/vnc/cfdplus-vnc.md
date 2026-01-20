@@ -1,5 +1,7 @@
 [TOC]
 
+<div style="page-break-after: always;"></div> <!-- 强制分页 -->
+
 ---
 # 图形
 ## 启动脚本示例
@@ -33,6 +35,8 @@ sleep 10000
     2. 创建一个`rsh`软连接，`ln -s /usr/bin/ssh /pathto/xxx/rsh`，然后将`export PATH=/pathto/xxx:$PATH`写入到`~/.bashrc`
     3. `cfd++`的启动环境也需要写到`~/.bashrc`
 
+<div style="page-break-after: always;"></div> <!-- 强制分页 -->
+
 ## 图形计算设置
 ### 算例设置
 #### 导入算例文件
@@ -41,6 +45,8 @@ sleep 10000
 
 !!! tip
     可以选择不`display the Grid Boundaries`
+
+<div style="page-break-after: always;"></div> <!-- 强制分页 -->
 
 #### 网格划分
 点击`Execute --> Domain Decomposition --> Metis --> Single CPU`
@@ -55,6 +61,8 @@ sleep 10000
     1. 网格划分建议走单核<br>
     2. 划分失败若是因内存问题，可以调大启动软件环境里的`MCFD_PROCMEM`和`MCFD_MAXMEM`的内存[配置](#font)
 
+<div style="page-break-after: always;"></div> <!-- 强制分页 -->
+
 ### 并行设置
 #### 界面参数设置
 点击`Execute  --> Multi-CPU Execution
@@ -67,6 +75,8 @@ sleep 10000
     1. `Multi-CPU machine type`选择为`Linux/Linux Cluster(mpich)`
     2. 默认是用主节点的的核数并行，跨节点则需要另外添加其余的节点名和并行核数
     3. 若因内存问题，可以调大启动软件环境里的`MCFD_PROCMEM`和`MCFD_MAXMEM`的内存[配置](#font)
+
+<div style="page-break-after: always;"></div> <!-- 强制分页 -->
 
 ### 启动环境内存解释<div id="font"></div>
 
@@ -91,4 +101,3 @@ sleep 10000
     cd /pathto/cfdplus/14.1-none/app/mlib/mcfd.14.1/html/
     firefox index3.html
     ```
-    
