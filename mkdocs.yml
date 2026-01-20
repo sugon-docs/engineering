@@ -27,3 +27,5 @@ nav:                                      # 目录展示
   - 首页: index.md                            
   - converge:
     - vnc: converge/vnc/converge-vnc.md
+  - cfdplus:
+    - vnc: cfdplus/vnc/cfdplus-vnc.md
