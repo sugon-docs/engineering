@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>vnc - 工程软件使用</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "vnc";
+        var mkdocs_page_input_path = "cfdplus\\vnc\\cfdplus-vnc.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../..">
+          <img src="../../../converge/vnc/attachment/logo.jpg" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">首页</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">converge</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../converge/vnc/converge-vnc/">vnc</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">cfdplus</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">vnc</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">启动脚本示例</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">图形计算设置</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">算例设置</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_5">导入算例文件</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_6">网格划分</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">并行设置</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_8">界面参数设置</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">启动环境内存解释</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">工程软件使用</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">cfdplus</li>
+      <li class="breadcrumb-item active">vnc</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div class="toc">
+<ul>
+<li><a href="#_1">图形</a><ul>
+<li><a href="#_2">启动脚本示例</a></li>
+<li><a href="#_3">图形计算设置</a><ul>
+<li><a href="#_4">算例设置</a><ul>
+<li><a href="#_5">导入算例文件</a></li>
+<li><a href="#_6">网格划分</a></li>
+</ul>
+</li>
+<li><a href="#_7">并行设置</a><ul>
+<li><a href="#_8">界面参数设置</a></li>
+</ul>
+</li>
+<li><a href="#_9">启动环境内存解释</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<hr />
+<h1 id="_1">图形</h1>
+<h2 id="_2">启动脚本示例</h2>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash                       </span>
+<span class="c1">#SBATCH -J cfd++               #指定作业名称</span>
+<span class="c1">#SBATCH -p kshcnormal           #指定队列/分区名称</span>
+<span class="c1">#SBATCH -N 2                 #指定节点数</span>
+<span class="c1">#SBATCH --ntasks-per-node=32        #指定每节点的任务数量</span>
+
+<span class="c1"># 环境加载</span>
+module<span class="w"> </span>purge
+module<span class="w"> </span>load<span class="w"> </span>compiler/devtoolset/7.3.1<span class="w">    </span>mpi/mpich/3.3.2-gcc-7.3.1
+<span class="nb">source</span><span class="w"> </span>/public/home/tanjj/apprepo/cfdplus/14.1-none/scripts/env.sh
+<span class="nb">export</span><span class="w"> </span><span class="nv">MPI_REMSH</span><span class="o">=</span>rsh
+<span class="nb">ulimit</span><span class="w"> </span>-s<span class="w"> </span>unlimited
+<span class="nb">ulimit</span><span class="w"> </span>-l<span class="w"> </span>unlimited
+
+<span class="c1"># 图形投射</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">DISPLAY</span><span class="o">=</span>vncserver04:18
+
+<span class="c1"># 图形程序启动</span>
+/public/home/tanjj/apprepo/cfdplus/14.1-none/app/mlib/mcfd.14.1/exec/mcfdgui
+
+sleep<span class="w"> </span><span class="m">10000</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ol>
+<li>图形脚本计算<code>linux</code>版本只能走<code>mpich</code>并行</li>
+<li>创建一个<code>rsh</code>软连接，<code>ln -s /usr/bin/ssh /pathto/xxx/rsh</code>，然后将<code>export PATH=/pathto/xxx:$PATH</code>写入到<code>~/.bashrc</code></li>
+<li><code>cfd++</code>的启动环境也需要写到<code>~/.bashrc</code></li>
+</ol>
+</div>
+<h2 id="_3">图形计算设置</h2>
+<h3 id="_4">算例设置</h3>
+<h4 id="_5">导入算例文件</h4>
+<p>点击左侧的<code>Directory</code>窗口，切换至算例所在目录，点击<code>Accept and Exit</code>载入算例
+<img alt="导入算例" src="../attachment/load_case.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>可以选择不<code>display the Grid Boundaries</code></p>
+</div>
+<h4 id="_6">网格划分</h4>
+<p>点击<code>Execute --&gt; Domain Decomposition --&gt; Metis --&gt; Single CPU</code>
+<img alt="选择网格划分1" src="../attachment/load_mesh1.png" /></p>
+<p>设置网格分块数与并行进程一致，点击<code>Run Tool</code>,会弹出运行日志框
+<img alt="选择网格划分2" src="../attachment/load_mesh2.png" /></p>
+<p>网格分块成功后，算例目录下会输出<code>mcpusin.bin.分块数</code>文件，没输出就是失败了，原因结合日志分析</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ol>
+<li>网格划分建议走单核<br></li>
+<li>划分失败若是因内存问题，可以调大启动软件环境里的<code>MCFD_PROCMEM</code>和<code>MCFD_MAXMEM</code>的内存<a href="#font">配置</a></li>
+</ol>
+</div>
+<h3 id="_7">并行设置</h3>
+<h4 id="_8">界面参数设置</h4>
+<p>点击`Execute  --&gt; Multi-CPU Execution
+<img alt="并行设置1" src="../attachment/parallel_set1.png" /></p>
+<p>设置并行参数，点击<code>Run CFD++</code>，开始计算，会弹出运行日志框，运行识别结合日志分析
+<img alt="并行设置2" src="../attachment/parallel_set2.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ol>
+<li><code>Multi-CPU machine type</code>选择为<code>Linux/Linux Cluster(mpich)</code></li>
+<li>默认是用主节点的的核数并行，跨节点则需要另外添加其余的节点名和并行核数</li>
+<li>若因内存问题，可以调大启动软件环境里的<code>MCFD_PROCMEM</code>和<code>MCFD_MAXMEM</code>的内存<a href="#font">配置</a></li>
+</ol>
+</div>
+<h3 id="_9">启动环境内存解释<div id="font"></div></h3>
+<ul>
+<li>
+<p><strong><code>MCFD_MAXMEM</code></strong>
+单个运行实例可使用的最大总内存上限  限制整个计算任务的内存使用总量，防止系统过载</p>
+</li>
+<li>
+<p><strong><code>MCFD_PROCMEM</code></strong>
+每个MPI进程的最大内存分配限额  在并行计算中控制单个进程的内存使用</p>
+</li>
+<li>
+<p><strong><code>MCFD_SPROCMEM</code></strong>
+和 MCFD_PROCMEM 一样，优先级更高</p>
+</li>
+<li>
+<p><strong><code>MCFD_PPROCMEM</code></strong>
+每个MPI进程的物理内存分配限制 </p>
+</li>
+</ul>
+<p>详细见手册</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>自带手册打开方式:
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">DISPLAY</span><span class="o">=</span>vncserver02:14
+<span class="nb">cd</span><span class="w"> </span>/pathto/cfdplus/14.1-none/app/mlib/mcfd.14.1/html/
+firefox<span class="w"> </span>index3.html
+</code></pre></div></p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../../converge/vnc/converge-vnc/" class="btn btn-neutral float-left" title="vnc"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../../converge/vnc/converge-vnc/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
