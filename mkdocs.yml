@@ -1,0 +1,29 @@
+site_name: converge使用                   # 站点名称
+
+theme:
+  name: readthedocs
+  logo: converge/vnc/attachment/logo.jpg
+#  theme:
+#   name: material                        # 用 material 主题
+#   palette:
+#     primary: blue
+#   language: zh
+#  logo: converge/vnc/attachments/logo.jpg
+
+plugins:                                  # 搜索插件
+  - search
+  - pdf-export:                           # pdf导出插件
+      verbose: true
+      enabled_if_env: ENABLE_PDF_EXPORT   # 环境变量控制是否开启pdf导出功能
+
+markdown_extensions:                      # 代码高亮插件
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - admonition                            # 便利贴
+  - pymdownx.details                      # 块折叠
+  - pymdownx.superfences                  # 块嵌套
+
+nav:                                      # 目录展示
+  - 首页: index.md                            
+  - converge:
+    - vnc: converge/vnc/converge-vnc.md
