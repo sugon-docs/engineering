@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>vnc - 工程软件使用</title>
+<link href="../../css/theme.css" rel="stylesheet"/>
+<link href="../../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "vnc";
+        var mkdocs_page_input_path = "ansysem\\ansysem-vnc.md";
+        var mkdocs_page_url = null;
+      </script>
+<!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<link href="ansysem-vnc.pdf" rel="alternate" title="PDF Export" type="application/pdf"/></head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a href="../..">
+<img alt="Logo" class="logo" src="../../converge/vnc/attachment/logo.jpg"/>
+</a><div role="search">
+<form action="../../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../..">首页</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">converge</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../converge/vnc/converge-vnc/">vnc</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">cfdplus</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cfdplus/vnc/cfdplus-vnc/">vnc</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">ansysem</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal current" href="#">vnc</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#_2">图形计算设置</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#_3">导入算例</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_4">并行设置</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_5">提交作业</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_6">监控作业</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_7">补充</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#beatopenmpi">开启Beat，切换至OpenMPI</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ansysem-batch/">batch</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="../..">工程软件使用</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href="../.."></a></li>
+<li class="breadcrumb-item">ansysem</li>
+<li class="breadcrumb-item active">vnc</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<div class="toc">
+<ul>
+<li><a href="#_1">图形</a><ul>
+<li><a href="#_2">图形计算设置</a><ul>
+<li><a href="#_3">导入算例</a></li>
+<li><a href="#_4">并行设置</a></li>
+<li><a href="#_5">提交作业</a></li>
+<li><a href="#_6">监控作业</a></li>
+<li><a href="#_7">补充</a><ul>
+<li><a href="#beatopenmpi">开启Beat，切换至OpenMPI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+<hr/>
+<h1 id="_1">图形</h1>
+<h2 id="_2">图形计算设置</h2>
+<h3 id="_3">导入算例  <div id="font0"></div></h3>
+<p>点击左侧的<code>File</code>按钮，<code>Open</code>选中<code>.aedt</code>文件打开
+<img alt="导入算例" src="../attachment/load_case.png"/></p>
+<h3 id="_4">并行设置</h3>
+<p>设置<code>Intelmpi</code>为<code>2021</code>
+<img alt="设置mpi版本" src="../attachment/intelmpi_2021.png"/></p>
+<p>设置成功可以在提交作业的<a href="#font2">Batchoptions</a>里查看</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code>IntelMPI 2021</code>可以在高版本<code>glibc</code>上使用，默认是<code>2018</code>在武汉、青海等集群上就默认用不了，或者设置成<code>OpenMPI</code>，也可以使用，但需要<a href="#font1">开启Beat功能</a></p>
+</div>
+<!-- 强制分页 --><div style="page-break-after: always;"></div>
+<h3 id="_5">提交作业</h3>
+<p>点开左侧项目数，<code>Analysis</code>下右键<code>Setup1</code>,点击<code>Submit Job</code>
+<img alt="提交作业" src="../attachment/submit.png"/></p>
+<p><code>Analysis Specification</code>下<code>Batchoptions</code>会打印当前使用的<code>MPI</code>信息<div id="font2"></div>
+<img alt="MPI信息" src="../attachment/mpi_version.png"/></p>
+<p>点击<code>Compute Resources</code>，勾选上<code>automatic settings</code>，设置好节点和核心数，<code>Submit Job</code>提交作业</p>
+<p><img alt="并行设置" src="../attachment/parallel_setting.png"/></p>
+<p>提交成功之后作业界面会被关闭</p>
+<!-- 强制分页 --><div style="page-break-after: always;"></div>
+<h3 id="_6">监控作业</h3>
+<p><code>Tools</code> &gt; <code>Job Management</code> &gt; <code>Monitor Jobs</code>
+<img alt="监控作业1" src="../attachment/monitor_job1.png"/></p>
+<p>选中正在计算的<code>.aedt</code>文件打开，会打印出作业运行的相关日志
+<img alt="监控作业2" src="../attachment/monitor_job2.png"/></p>
+<p><img alt="监控作业3" src="../attachment/monitor_job3.png"/></p>
+<p>等待日志结束，作业完成后，再重新打开<a href="#font0">导入算例</a>查看</p>
+<h3 id="_7">补充</h3>
+<h4 id="beatopenmpi">开启<code>Beat</code>，切换至<code>OpenMPI</code> <div id="font1"></div></h4>
+<p><code>Tools &gt; Options &gt; General Options</code>
+<img alt="开启Beat" src="../attachment/beat.png"/></p>
+<p><img alt="打开OpenMPI" src="../attachment/openmpi.png"/></p>
+<!-- 强制分页 --><div style="page-break-after: always;"></div>
+<!-- 强制分页 -->
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../../cfdplus/vnc/cfdplus-vnc/" title="vnc"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../ansysem-batch/" title="batch">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../../cfdplus/vnc/cfdplus-vnc/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../ansysem-batch/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "../..";</script>
+<script src="../../js/theme_extra.js"></script>
+<script src="../../js/theme.js"></script>
+<script src="../../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+</body>
+</html>
