@@ -65,7 +65,7 @@ sleep 10000
 
 ### 并行设置
 #### 界面参数设置
-点击`Execute  --> Multi-CPU Execution
+点击`Execute  --> Multi-CPU Execution`
 ![并行设置1](./attachment/parallel_set1.png)
 
 设置并行参数，点击`Run CFD++`，开始计算，会弹出运行日志框，运行识别结合日志分析

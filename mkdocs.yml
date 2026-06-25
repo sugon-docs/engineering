@@ -1,5 +1,5 @@
 site_name: 工程软件使用                   # 站点名称
-
+# site_url: https://sugon-docs/engineering   # 站点 URL
 theme:
   name: readthedocs
   logo: converge/vnc/attachment/logo.jpg
@@ -12,8 +12,23 @@ theme:
 
 plugins:                                  # 搜索插件
   - search
+  # - to-pdf:
+  #     author: ipx@39
+  #     copyright: Copyright © ipx@39 2026
+  #     # cover: false 
+  #     # cover_title: 工程软件使用说明
+  #     # toc_title: 目录
+  #     toc_level: 3
+  #     heading_shift: true
+  #     output_path: output/使用说明.pdf
+  #     enabled_if_env: ENABLE_PDF_EXPORT
+  #     # html_path: output/使用说明.html
+  #     debug_html: true
+  #     verbose: true
+
   - pdf-export:                           # pdf导出插件
       verbose: true
+      media_type: print
       enabled_if_env: ENABLE_PDF_EXPORT   # 环境变量控制是否开启pdf导出功能
 
 markdown_extensions:                      # 代码高亮插件
