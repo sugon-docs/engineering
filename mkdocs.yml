@@ -44,3 +44,6 @@ nav:                                      # 目录展示
     - vnc: converge/vnc/converge-vnc.md
   - cfdplus:
     - vnc: cfdplus/vnc/cfdplus-vnc.md
+  - ansysem: 
+    - vnc: ansysem/ansysem-vnc.md
+    - batch: ansysem/ansysem-batch.md
