@@ -64,8 +64,8 @@ $ tail -n 10  license.log
 15:42:37 (ansyslmd) OUT: "cfd_base" jsyadmin@login09  [10711] 
 ```
 !!! tip
-    1.提前做好爱国版本操作
-    2.想停止服务可以`./stop_ansysli`,或者直接杀掉所有相关进程
+    1. 提前做好爱国版本操作
+    2. 想停止服务可以`./stop_ansysli`,或者直接杀掉所有相关进程
 
 <div style="page-break-after: always;"></div> <!-- 强制分页 -->
 
@@ -92,8 +92,8 @@ $ ifconfig
 ![license文件](./attachment/ansyslmlc.png)
 
 !!! tip
-    1.网卡地址选择前12位
-    2.`localhost`可以改成服务所起在的机器名，如果改为机器名，就只能在该机器上启动服务，当然保持`localhost`也可以
+    1. 网卡地址选择前12位
+    2. `localhost`可以改成服务所起在的机器名，如果改为机器名，就只能在该机器上启动服务，当然保持`localhost`也可以
 
 <div style="page-break-after: always;"></div> <!-- 强制分页 -->
 
@@ -111,8 +111,8 @@ $ ./startInstLicServ -noUI  -p /Pathto/abaqus/license/install
 # -p  安装路径指定
 ```
 !!! tip
-    1.`licesne`工具安装首次需要`root`,但后续启动服务不需要
-    2.如果执行提示没有`ksh`就装一个
+    1. `licesne`工具安装首次需要`root`,但后续启动服务不需要
+    2. 如果执行提示没有`ksh`就装一个
 
 <div style="page-break-after: always;"></div> <!-- 强制分页 -->
 
@@ -155,6 +155,7 @@ tail -n 10 log
 ```
 
 <div style="page-break-after: always;"></div> <!-- 强制分页 -->
+
 #### 获取服务
 第一种方式是通过环境变量获取
 ```bash
@@ -171,6 +172,7 @@ LICENSE_SERVER_TYPE=flex
 FLEX_LICENSE_CONFIG=27800@a09r4n01
 ```
 <div style="page-break-after: always;"></div> <!-- 强制分页 -->
+
 #### ABAQUSLM.lic文件配置  <div id="font2"></div>
 `ABAQUSLM.lic`文件里设置服务端口以及启动机器的名称即可
 ```bash
@@ -188,6 +190,6 @@ USE_SERVER
 #
 ```
 !!! tip
-    1.`27800`为服务端口，启动前需保证该端口未被占用
-    2.`this_host`可以改成服务所起在的机器名，如果改为机器名，就只能在该机器上启动服务，当然保持`this_host`也可以
-    3.服务停止，杀掉对应进程即可
+    1. `27800`为服务端口，启动前需保证该端口未被占用
+    2. `this_host`可以改成服务所起在的机器名，如果改为机器名，就只能在该机器上启动服务，当然保持`this_host`也可以
+    3. 服务停止，杀掉对应进程即可
