@@ -47,3 +47,5 @@ nav:                                      # 目录展示
   - ansysem: 
     - vnc: ansysem/ansysem-vnc.md
     - batch: ansysem/ansysem-batch.md
+  - license:
+    - license: license/startLicense.md

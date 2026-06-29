@@ -83,7 +83,7 @@ echo 'SERVER=1055@a09r4n01' >> ansyslmd.ini
 
 <div style="page-break-after: always;"></div> <!-- 强制分页 -->
 
-#### ansyslmd.lic文件配置<div id="font1"></div>
+#### ansyslmd.lic文件配置 <div id="font1"></div>
 一般安装包里会有`license.txt`文件，复制一份成`ansyslmd.lic`即可，需要修改所起服务的端口以及网卡地址，端口选一个没有被占用的就行，默认的`1055`也可以，网卡地址可以使用`ifconfig`查询，一般选择一个`ib`网卡的
 ```bash
 $ ifconfig 
@@ -92,10 +92,101 @@ $ ifconfig
 ![license文件](./attachment/ansyslmlc.png)
 
 !!! tip
-    1.网卡地址选择前12位置小写
+    1.网卡地址选择前12位
     2.`localhost`可以改成服务所起在的机器名，如果改为机器名，就只能在该机器上启动服务，当然保持`localhost`也可以
 
 <div style="page-break-after: always;"></div> <!-- 强制分页 -->
 
 ## ABAQUS
-### 
+### license服务启动流程
+#### 工具安装
+切换至软件安装包目录下
+```bash
+$ cd DS_License_Server/AllOS/1/RedHat_Suse/
+$ ls
+DSLicTarget  dsls  dsls.service  DSLS.tar  DSYLicServINSTB  InstallServiceDSLS.sh  startInstLicServ
+$ chmod +x *
+$ ./startInstLicServ -noUI  -p /Pathto/abaqus/license/install
+# -noUI 静默安装
+# -p  安装路径指定
+```
+!!! tip
+    1.`licesne`工具安装首次需要`root`,但后续启动服务不需要
+    2.如果执行提示没有`ksh`就装一个
+
+<div style="page-break-after: always;"></div> <!-- 强制分页 -->
+
+#### 服务启动
+切换到`licesne`工具目录，并且将[配置](#font2)`ABAQUSLM.lic`复制到该目录下
+```bash
+$ cd /Pathto/abaqus/license/install
+$ ls
+ABAQUSLM      CATSettings    lmgrd.keywords   rlm.keywords             SSQ__lmgrd__linux64.bin  SSQ__rlm__linux64.bin
+ABAQUSLM.lic  lmgrd.install  lmgrd.uninstall  SSQ__lmgrd__linux32.bin  SSQ__rlm__linux32.bin
+```
+启动服务
+```bash
+$ ./SSQ__lmgrd__linux64.bin -c ABAQUS.lic -l log
+# -c 指定 *.lic 文件
+# -l 输出运行日志
+```
+<div style="page-break-after: always;"></div> <!-- 强制分页 -->
+
+查看服务运行
+```bash
+$ lsof -i:27800
+COMMAND     PID          USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
+SSQ__lmgr 35906 indu_soft_crk    0u  IPv6 1325915      0t0  TCP *:27800 (LISTEN)
+SSQ__lmgr 35906 indu_soft_crk    3u  IPv6 1370238      0t0  TCP localhost:27800->localhost:37666 (ESTABLISHED)
+ABAQUSLM  35916 indu_soft_crk    0u  IPv6 1325915      0t0  TCP *:27800 (LISTEN)
+ABAQUSLM  35916 indu_soft_crk    5u  IPv4 1370237      0t0  TCP localhost:37666->localhost:27800 (ESTABLISHED)
+
+tail -n 10 log
+ 9:20:16 (ABAQUSLM) IN: "parallel" acho3lnwgg@g01r4n11  (24 licenses) 
+ 9:23:51 (ABAQUSLM) OUT: "cae" acho3lnwgg@a03r2n08  
+ 9:23:51 (ABAQUSLM) 1782696231/0/6.22-1/0/9999/1/1/cae/23277/acho3lnwgg/unknown/a03r2n08
+ 9:35:08 (lmgrd) TIMESTAMP 6/29/2026
+ 9:35:53 (ABAQUSLM) OUT: "explicit" jianyijian@a01r2n15  (21 licenses) 
+ 9:35:53 (ABAQUSLM) OUT: "parallel" jianyijian@a01r2n15  (32 licenses) 
+ 9:35:53 (ABAQUSLM) 1782696953/0/6.22-1/0/9999/84/21/exp_par/21836/jianyijian/unknown/a01r2n15
+ 9:36:08 (ABAQUSLM) 1782696968/1/6.22-1/21/exp_par/21836/jianyijian/unknown/a01r2n15
+ 9:36:08 (ABAQUSLM) IN: "explicit" jianyijian@a01r2n15  (21 licenses) 
+ 9:36:08 (ABAQUSLM) IN: "parallel" jianyijian@a01r2n15  (32 licenses)
+```
+
+<div style="page-break-after: always;"></div> <!-- 强制分页 -->
+#### 获取服务
+第一种方式是通过环境变量获取
+```bash
+export LM_LICENSE_FILE=27800@a09r4n01
+```
+第二种方式可以直接在安装目录下写好配置文件
+```bash
+cd /PathTo/abaqus2023/linux_a64/SMA/site/
+vim  EstablishedProductsConfig.ini
+```
+写入保存即可
+```bash
+LICENSE_SERVER_TYPE=flex
+FLEX_LICENSE_CONFIG=27800@a09r4n01
+```
+<div style="page-break-after: always;"></div> <!-- 强制分页 -->
+#### ABAQUSLM.lic文件配置  <div id="font2"></div>
+`ABAQUSLM.lic`文件里设置服务端口以及启动机器的名称即可
+```bash
+#
+#     DASSAULT SYSTEMES SIMULIA
+# ABAQUS / TOSCA / FE-SAFE / ISIGHT
+#             LICENSE FILE
+#
+#         TEAM SOLIDSQUAD-SSQ
+#              2020/11/25
+#
+SERVER this_host ID=20170101 27800
+VENDOR ABAQUSLM
+USE_SERVER
+#
+```
+!!! tip
+    1.`27800`为服务端口，启动前需保证该端口未被占用
+    2.`this_host`可以改成服务所起在的机器名，如果改为机器名，就只能在该机器上启动服务，当然保持`this_host`也可以
